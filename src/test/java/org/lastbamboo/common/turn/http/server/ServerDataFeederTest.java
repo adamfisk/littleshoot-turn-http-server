@@ -93,6 +93,9 @@ public class ServerDataFeederTest
             new HashMap<InetSocketAddress, Collection<ByteBuffer>>();
         final Collection<SendIndication> messages = 
             new LinkedList<SendIndication>();
+        
+        final AtomicInteger totalDataSent = new AtomicInteger(0);
+        final AtomicInteger totalDataReceived = new AtomicInteger(0);
         final IoSession session = new IoSessionStub()
             {
             @Override
@@ -130,11 +133,21 @@ public class ServerDataFeederTest
             private void addRaw(final Collection<ByteBuffer> bufs, 
                 final SendIndication si)
                 {
-                final InetSocketAddress address = si.getRemoteAddress();
                 final byte[] rawData = si.getData();
                 final byte[] noFrame = 
                     ArrayUtils.subarray(rawData, 2, rawData.length);
+                
+                totalDataReceived.addAndGet(noFrame.length);
                 bufs.add(ByteBuffer.wrap(noFrame));
+                
+                
+                synchronized (totalDataReceived)
+                    {
+                    if (totalDataReceived.get() == totalDataSent.get())
+                        {
+                        totalDataReceived.notify();
+                        }
+                    }
                 }
             };
         
@@ -146,6 +159,7 @@ public class ServerDataFeederTest
                     new InetSocketAddress("44.52.67."+(1+i), 4728+i);
                 feeder.onRemoteAddressOpened(remoteAddress, session);
                 feeder.onData(remoteAddress, session, DATA);
+                totalDataSent.addAndGet(DATA.length);
                 }
             }
         
@@ -158,7 +172,17 @@ public class ServerDataFeederTest
             }
         
         assertEquals(NUM_REMOTE_HOSTS, m_dataServerSockets.get());
+        
+        synchronized (totalDataReceived)
+            {
+            if (totalDataReceived.get() < totalDataSent.get())
+                {
+                totalDataReceived.wait(4000);
+                }
+            }
 
+        assertEquals(totalDataSent.get(), totalDataReceived.get());
+        
         // The messages received should be TURN Send Indications that wrap
         // TCP Frames.  They're already placed in the appropriate buckets for
         // each remote host.  Now we just need to verify the data.
