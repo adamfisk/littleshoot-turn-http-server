@@ -5,8 +5,6 @@ import java.net.SocketAddress;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import org.apache.mina.common.ByteBuffer;
 import org.apache.mina.common.ConnectFuture;
@@ -39,8 +37,6 @@ public class ServerDataFeeder implements TurnClientListener, IoServiceListener
 
     private final InetSocketAddress m_serverAddress;
     
-    private final Executor m_executor = Executors.newSingleThreadExecutor();
-
     /**
      * Creates a new {@link ServerDataFeeder} for feeding data to a local 
      * HTTP server.
@@ -60,26 +56,7 @@ public class ServerDataFeeder implements TurnClientListener, IoServiceListener
             onRemoteAddressOpened(remoteAddress, session);
         final ByteBuffer dataBuf = ByteBuffer.wrap(data);
         
-        final String dataString = new String(data);
-        if (dataString.contains("\r\n"))
-            {
-            m_log.error("GOT CRLF!!!");
-            }
-
-        /*
-        final Runnable command = new Runnable()
-            {
-            public void run()
-                {
-                */
         localSession.write(dataBuf);
-            
-                /*
-                 * 348895
-                }
-            };
-        m_executor.execute(command);
-        */
         m_log.debug("Local bytes written: {}", localSession.getWrittenBytes());
         }
 
