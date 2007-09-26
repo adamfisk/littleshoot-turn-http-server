@@ -80,8 +80,8 @@ public class ServerDataFeeder implements TurnClientListener, IoServiceListener
             connector.addListener(this);
             final ThreadModel threadModel = 
                 ExecutorThreadModel.getInstance("TCP-TURN-Local-Socket");
-            //connector.getDefaultConfig().setThreadModel(threadModel);
-            connector.getDefaultConfig().setThreadModel(ThreadModel.MANUAL);
+            connector.getDefaultConfig().setThreadModel(threadModel);
+            //connector.getDefaultConfig().setThreadModel(ThreadModel.MANUAL);
             final IoHandler ioHandler = 
                 new TurnLocalIoHandler(ioSession, remoteAddress);
             
