@@ -167,7 +167,7 @@ public class ServerDataFeederTest
             {
             if (m_dataServerSockets.get() < NUM_REMOTE_HOSTS)
                 {
-                m_dataServerSockets.wait(3000);
+                m_dataServerSockets.wait(6000);
                 }
             }
         
@@ -177,7 +177,7 @@ public class ServerDataFeederTest
             {
             if (totalDataReceived.get() < totalDataSent.get())
                 {
-                totalDataReceived.wait(4000);
+                totalDataReceived.wait(6000);
                 }
             }
 
