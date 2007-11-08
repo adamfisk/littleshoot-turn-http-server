@@ -92,7 +92,7 @@ public class ServerDataFeeder implements TurnClientListener, IoServiceListener
             // than this unless there's something wrong.
             ioFuture.join(6000);
             final IoSession session = ioFuture.getSession();
-            if (!session.isConnected())
+            if (session == null || !session.isConnected())
                 {
                 m_log.error("Could not connect to server: {}", 
                     this.m_serverAddress);
