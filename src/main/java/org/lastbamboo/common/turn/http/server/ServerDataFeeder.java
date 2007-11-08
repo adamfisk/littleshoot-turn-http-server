@@ -114,8 +114,9 @@ public class ServerDataFeeder implements TurnClientListener, IoServiceListener
             {
             // This would be odd -- could indicate someone fiddling
             // with our servers?
-            m_log.warn("We don't know about the remote address: "+
+            m_log.warn("We don't know about the remote address: {}",
                 remoteAddress);
+            m_log.warn("Address not in: {}", m_addressesToSessions.keySet());
             }
         else
             {
