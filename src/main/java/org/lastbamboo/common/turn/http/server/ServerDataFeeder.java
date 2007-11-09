@@ -156,7 +156,9 @@ public class ServerDataFeeder implements TurnClientListener, IoServiceListener
             {
             if (entry.getValue().equals(session))
                 {
-                this.m_addressesToSessions.remove(entry.getKey());
+                final InetSocketAddress key = entry.getKey();
+                m_log.debug("Removing session for address: {}", key);
+                this.m_addressesToSessions.remove(key);
                 return;
                 }
             }
