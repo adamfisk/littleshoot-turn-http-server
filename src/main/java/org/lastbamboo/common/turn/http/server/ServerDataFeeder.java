@@ -162,7 +162,8 @@ public class ServerDataFeeder implements TurnClientListener, IoServiceListener
                 return;
                 }
             }
-        m_log.warn("Did not find session!!");
+        m_log.warn("Did not find session:\n{}\nin:{}", 
+            session, m_addressesToSessions);
         }
 
     public void close()
