@@ -18,7 +18,7 @@
     <dependencies>
 
         <dependency>
-            <groupId>org.apache.mina</groupId>
+            <groupId>org.littleshoot.mina</groupId>
             <artifactId>mina-core</artifactId>
             </dependency>
 

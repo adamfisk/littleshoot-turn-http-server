@@ -25,8 +25,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.apache.commons.lang.ArrayUtils;
-import org.apache.mina.common.IoSession;
-import org.apache.mina.common.WriteFuture;
+import org.littleshoot.mina.common.IoSession;
+import org.littleshoot.mina.common.WriteFuture;
 import org.junit.Test;
 import org.lastbamboo.common.stun.stack.message.turn.SendIndication;
 import org.lastbamboo.common.turn.http.server.stubs.IoSessionStub;
