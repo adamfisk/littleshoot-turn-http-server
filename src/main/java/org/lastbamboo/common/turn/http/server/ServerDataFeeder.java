@@ -90,7 +90,7 @@ public class ServerDataFeeder implements TurnClientListener, IoServiceListener
             
             // We're just connecting locally, so it should be much quicker 
             // than this unless there's something wrong.
-            ioFuture.join(6000);
+            ioFuture.join(10 * 1000);
             final IoSession session = ioFuture.getSession();
             if (session == null || !session.isConnected())
                 {
