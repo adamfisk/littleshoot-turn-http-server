@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.lastbamboo.common.turn.client.TurnClientListener;
+import org.lastbamboo.common.turn.client.TurnLocalIoHandler;
 import org.littleshoot.mina.common.ByteBuffer;
 import org.littleshoot.mina.common.ConnectFuture;
 import org.littleshoot.mina.common.ExecutorThreadModel;
@@ -17,15 +19,12 @@ import org.littleshoot.mina.common.IoServiceListener;
 import org.littleshoot.mina.common.IoSession;
 import org.littleshoot.mina.common.ThreadModel;
 import org.littleshoot.mina.transport.socket.nio.SocketConnector;
-import org.lastbamboo.common.tcp.frame.TcpFrame;
-import org.lastbamboo.common.turn.client.TurnClientListener;
-import org.lastbamboo.common.turn.client.TurnLocalIoHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Class that feeds data received in {@link TcpFrame}s to a locally-running
- * server.
+ * Class that feeds data received from the TURN server to a locally-running
+ * HTTP server.
  */
 public class ServerDataFeeder implements TurnClientListener, IoServiceListener
     {
