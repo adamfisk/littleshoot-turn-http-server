@@ -30,8 +30,8 @@ import org.littleshoot.mina.common.WriteFuture;
 import org.junit.Test;
 import org.lastbamboo.common.stun.stack.message.turn.SendIndication;
 import org.lastbamboo.common.turn.http.server.stubs.IoSessionStub;
-import org.lastbamboo.common.util.ByteBufferUtils;
-import org.lastbamboo.common.util.NetworkUtils;
+import org.littleshoot.util.ByteBufferUtils;
+import org.littleshoot.util.NetworkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

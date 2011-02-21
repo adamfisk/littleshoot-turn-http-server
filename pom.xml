@@ -23,14 +23,13 @@
             </dependency>
 
         <dependency>
-            <groupId>org.lastbamboo</groupId>
-            <artifactId>lastbamboo-common-util-common</artifactId>
-            </dependency>
-
+            <groupId>org.littleshoot</groupId>
+            <artifactId>util</artifactId>
+        </dependency>
         <dependency>
-            <groupId>org.lastbamboo</groupId>
-            <artifactId>lastbamboo-common-util-mina</artifactId>
-            </dependency>
+            <groupId>org.littleshoot</groupId>
+            <artifactId>mina-util</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.lastbamboo</groupId>
