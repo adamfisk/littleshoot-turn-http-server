@@ -41,13 +41,13 @@
         <dependency>
             <groupId>org.littleshoot</groupId>
             <artifactId>turn-client</artifactId>
-            <version>1.0.4</version>
+            <version>${ls.version}</version>
         </dependency> 
 
         <dependency>
             <groupId>org.littleshoot</groupId>
             <artifactId>util</artifactId>
-            <version>1.0.4</version>
+            <version>${ls.version}</version>
         </dependency> 
     </dependencies>
 </project>
